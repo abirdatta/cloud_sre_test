@@ -109,3 +109,7 @@ variable "internet_gateway_cidr" {
 variable "public_subnet_route_table_name" {
   default = "public_route_table"
 }
+
+variable "private_subnet_route_table_name" {
+  default = "private_route_table"
+}

@@ -39,6 +39,29 @@ module "compute_public_subnets" {
   map_public_ip_on_launch = true
 }
 
+module "nat_gateway" {
+  source = "../resources/NAT_GATEWAY/"
+  subnet_id = element(module.compute_public_subnets.subnet_ids, 0)
+  env = terraform.workspace
+  name = "${terraform.workspace}-nat-gateway"
+}
+
+module "private_subnet_route_table" {
+  source = "../resources/ROUTE_TABLE/"
+  cidr_gateway_id_map = {
+    "0.0.0.0/0" = module.nat_gateway.nat_gateway_id
+  }
+  env = terraform.workspace
+  route_table_name = var.private_subnet_route_table_name
+  vpc_id = data.terraform_remote_state.vpc.outputs.vpc_id
+}
+
+module "compute_private_subnet_ngw_association"{
+  source = "../resources/ROUTE_TABLE_ASSOCIATION"
+  route_table_id = module.private_subnet_route_table.route_table_id
+  subnet_id_map = module.compute_private_subnets.az_subnet_id_map
+}
+
 module "internet_gateway" {
   source = "../resources/INTERNET_GATEWAY/"
   env = terraform.workspace
