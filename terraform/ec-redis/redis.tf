@@ -37,7 +37,7 @@ module "redis" {
   port = var.port
   replication_group_description = var.replication_group_description
   replication_group_id = var.replication_group_id
-  security_group_ids = [data.terraform_remote_state.security_groups.outputs.rds_ecredis_security_group_id]
+  security_group_ids = [data.terraform_remote_state.security_groups.outputs.ecredis_security_group_id]
   subnet_group_name = module.ec_subnet_group.ec_subnet_group_name
   tags = {
     Name = "${terraform.workspace}-redis"

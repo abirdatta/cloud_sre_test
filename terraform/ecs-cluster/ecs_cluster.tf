@@ -52,7 +52,7 @@ module "ecs_cluster" {
   asg_min_size = var.asg_min_size[terraform.workspace]
   instance_type = var.instance_type[terraform.workspace]
   public_key = var.public_key
-  security_groups = [data.terraform_remote_state.security_groups.outputs.rds_ec2_security_group_id]
+  security_groups = [data.terraform_remote_state.security_groups.outputs.ec2_security_group_id]
   vpc_id = data.terraform_remote_state.vpc.outputs.vpc_id
   vpc_subnets = data.terraform_remote_state.compute-and-db-subnets.outputs.public_compute_subnet_ids
   instance_root_volume_size = var.instance_root_volume_size
