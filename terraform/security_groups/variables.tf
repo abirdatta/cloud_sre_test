@@ -7,7 +7,7 @@ variable "ec_redis_sg_name" {
 }
 
 variable "alb_sg_name" {
-  default = "alb_redis_sg"
+  default = "alb_sg"
 }
 
 variable "ec2_sg_name" {

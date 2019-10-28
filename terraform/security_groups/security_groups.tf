@@ -93,6 +93,13 @@ module "ec2_security_group" {
       protocol = "tcp"
       cidr_blocks = []
       security_groups = [module.rds_db_security_group.security_group_id]
+    },
+    {
+      from_port = 0
+      to_port = 65535
+      protocol = "tcp"
+      cidr_blocks = ["0.0.0.0/0"]
+      security_groups = []
     }
   ]
 }
