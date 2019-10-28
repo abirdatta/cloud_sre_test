@@ -16,7 +16,7 @@ module "compute_private_subnets" {
   vpc_id = data.terraform_remote_state.vpc.outputs.vpc_id
   region = var.region
   subnet_name_prefix = var.subnet_name_prefix_compute_private
-  zones_cidr_map = var.zones_cidr_map_compute_private
+  zones_cidr_map = var.zones_cidr_map_compute_private[terraform.workspace]
   env = terraform.workspace
 }
 
@@ -25,7 +25,7 @@ module "db_private_subnets" {
   vpc_id = data.terraform_remote_state.vpc.outputs.vpc_id
   region = var.region
   subnet_name_prefix = var.subnet_name_prefix_db_private
-  zones_cidr_map = var.zones_cidr_map_db_private
+  zones_cidr_map = var.zones_cidr_map_db_private[terraform.workspace]
   env = terraform.workspace
 }
 
@@ -34,7 +34,7 @@ module "compute_public_subnets" {
   vpc_id = data.terraform_remote_state.vpc.outputs.vpc_id
   region = var.region
   subnet_name_prefix = var.subnet_name_prefix_compute_public
-  zones_cidr_map = var.zones_cidr_map_compute_public
+  zones_cidr_map = var.zones_cidr_map_compute_public[terraform.workspace]
   env = terraform.workspace
   map_public_ip_on_launch = true
 }
