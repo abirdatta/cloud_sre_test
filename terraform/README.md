@@ -23,4 +23,15 @@ Terraform modules are used. Every module resource like VPC, Subnet, Route Table 
 State files are maintained remotely in S3. Please change the backend S3 bucket's location in providers.tf inside individual resource directories.
 
 
-This is work in progress. Only VPC, and all subnets are created. Rest are undergoing development.
+Terraform workspaces supported - dev, qa, prod
+
+Go inside individual resource directories and run terraform commands. Make sure to add or select terraform wokspace beafire runnign terraform commands. Sequence to run the configs to setup resources - 
+
+1. vpc
+2. subnets
+3. security_groups
+4. ec-redis
+5. rds-mariadb
+6. ecs-cluster
+7. alb
+8. ecs-task-definition-services
