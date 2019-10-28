@@ -96,4 +96,3 @@ module "ec2_security_group" {
     }
   ]
 }
-

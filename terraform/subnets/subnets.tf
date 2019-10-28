@@ -60,6 +60,3 @@ module "compute_public_subnet_igw_association"{
   route_table_id = module.public_subnet_route_table.route_table_id
   subnet_id_map = module.compute_public_subnets.az_subnet_id_map
 }
-
-
-
